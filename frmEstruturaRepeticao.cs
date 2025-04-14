@@ -19,6 +19,11 @@ namespace ProjetoOrientacaoObjeto
             InitializeComponent();
             //executa o método carrega combo
             carregaCombo();
+
+            txtCadastro.TabIndex = 0;
+
+
+            //carregaListaEstados();
         }
 
         private void btnCarregaEstado_Click(object sender, EventArgs e)
@@ -44,10 +49,82 @@ namespace ProjetoOrientacaoObjeto
             cbbEstados.Items.Add("Campo Grande");
             cbbEstados.Items.Add("Campo Limpo");
 
+        }
 
+        public void carregaListaEstados()
+        {
+            ltbListaEstados.Items.Clear();
+            ltbListaEstados.Items.Add("Pinheiros");
+            ltbListaEstados.Items.Add("Ibirapuera");
+            ltbListaEstados.Items.Add("Moema");
+            ltbListaEstados.Items.Add("Borba Gato");
+            ltbListaEstados.Items.Add("Granja Julieta");
+            ltbListaEstados.Items.Add("Morumbi");
+            ltbListaEstados.Items.Add("Alto da Boa Vista");
+            ltbListaEstados.Items.Add("Vila Olímpia");
+            ltbListaEstados.Items.Add("Brooklin");
+            ltbListaEstados.Items.Add("Cidade Jardim");
         }
 
 
+        private void btnCarregaListaEstados_Click(object sender, EventArgs e)
+        {
+            //carregaListaEstados();
+        }
 
+        private void btnInserirEstado_Click(object sender, EventArgs e)
+        {
+            if (txtCadastro.Text.Equals(""))
+            {
+                menssagemSistema();
+                limpaCampo();
+            }
+            else 
+            {
+                inserirEstado();
+            }
+        }
+
+        public void inserirEstado()    //Criando o método para inserir Estados
+        {           
+                ltbListaEstados.Items.Add(txtCadastro.Text);
+                limpaCampo();                       
+                
+        }
+        private void txtCadastro_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCadastro_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Enter && txtCadastro.Text.Equals(""))
+            {
+                menssagemSistema();
+            }
+            else
+                if (e.KeyCode == Keys.Enter && txtCadastro.Text != "")
+
+            {
+                inserirEstado();
+            }
+                        
+        }
+
+        public void limpaCampo() // Criando o método para limpar campos.
+        {
+            txtCadastro.Clear();
+            txtCadastro.Focus();
+        }
+
+        public void menssagemSistema() //Criando o método para monstrar uma mensagem no sistema.
+        {
+            MessageBox.Show("Por favor inserir um Estado", "Mensagem do sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
+
+
+
 }
+
